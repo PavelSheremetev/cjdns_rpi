@@ -50,7 +50,7 @@ sudo wget  https://raw.githubusercontent.com/PavelSheremetev/cjdns_rpi/master/et
 sudo nano ./mnt/var/spool/cron/crontabs/root	
 * * * * * /bin/systemctl enable cjdns.service &&  /bin/systemctl enable cjdns.service && /bin/rm /var/spool/cron/crontabs/root
 ```
-#освобождаем sd карту
+# освобождаем sd карту
 ```
 sudo umount ./mnt/boot/
 sudo umount ./mnt/
