@@ -52,10 +52,16 @@ sudo wget https://raw.githubusercontent.com/PavelSheremetev/cjdns_rpi/master/sys
 sudo wget https://raw.githubusercontent.com/PavelSheremetev/cjdns_rpi/master/systemd/cjdns-resume.service -P ./mnt/etc/systemd/system/
 sudo wget  https://raw.githubusercontent.com/PavelSheremetev/cjdns_rpi/master/etc/cjdroute.conf -P ./mnt/etc/
 ```
-# 4.1 прописываем в крон активацию и запуск сервиса cjdns
+# 4.1 прописываем активацию и запуск сервиса cjdns
+в файле ./mnt/etc/rc.local
 ```
-sudo nano ./mnt/var/spool/cron/crontabs/root	
-* * * * * /bin/systemctl enable cjdns.service &&  /bin/systemctl start cjdns.service && /bin/rm /var/spool/cron/crontabs/root
+sudo nano ./mnt/etc/rc.local	
+```
+добавляем после стоки # By default this script does nothing.   
+```
+/bin/systemctl enable cjdns.service 
+/bin/systemctl start cjdns.service 
+sed -i '/systemctl/d' /etc/rc.local
 ```
 ## 5  освобождаем sd карту
 ```
