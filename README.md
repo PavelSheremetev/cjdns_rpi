@@ -1,21 +1,21 @@
-# cjdns_rpi
-mkdir rpi
+## cjdns_rpi
+'''mkdir rpi
 cd rpi
 wget --content-disposition  https://downloads.raspberrypi.org/raspbian_lite_latest
 unzip *-raspbian-stretch-lite.zip 
 mv *-raspbian-stretch-lite.img raspbian-stretch-lite.img
 sudo dd if=raspbian-stretch-lite.img of=/dev/sda bs=4M
 sync
-## reconnect sdcard
+# reconnect sdcard
 mkdir mnt
 sudo mount /dev/sda2 ./mnt 
 sudo mount /dev/sda1 ./mnt/boot 
- 
-## enable ssh
+# enable ssh
 sudo touch ./mnt/boot/ssh
 sudo mkdir ./mnt/root/.ssh
-sudo chmod 700 ./mnt/root/.ssh 
- sudo bash -c 'cat <<EOF > ./mnt/root/.ssh/authorized_keys
+sudo chmod 700 ./mnt/root/.ssh '''
+
+sudo bash -c 'cat <<EOF > ./mnt/root/.ssh/authorized_keys
 ssh-rsa 
 AAAAB3NzaC1yc2EAAAADAQABAAABAQChd+ARrsZH9uxWqY5mpPqKhkYGkZvww4l+OLB4FZW5Cm82UFBub7TH7RE167RT63od1djCbUIH5sIj9Tgt8RszP1QYSXxweGITn/VVJ8XWo2oduiXrcHQiHH1AFxXeRZg611MRJ5wWObHEnpjv9ae1Eh7/FZzvs/du15A5Jx2p/09BBc8HVeCAZUl28rKfrbQtRJJwDXOBdoA1YlMF0zP95HC1JT9yv2FRtNlK4FStnayw9gMwOU6tU90rHVAMBHgMAYEcCcLvfzByFHd1QgJCa6VzX9B1TMv8txgTUFknGYxUf40IWSNXgmFU3kYMbXQ9LuV0MoJGwISMt22SvHAf 
 spd@aira.life
