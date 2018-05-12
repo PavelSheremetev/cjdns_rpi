@@ -76,3 +76,9 @@ sync
 ssh root@fc50:f733:66ce:1955:b04f:8374:6b4a:b2a9
 
 ```
+или 
+```
+ssh pi@fc50:f733:66ce:1955:b04f:8374:6b4a:b2a9
+
+```
+пароль по умолчанию raspberry
