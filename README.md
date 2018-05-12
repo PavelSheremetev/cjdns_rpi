@@ -1,7 +1,8 @@
 ### Подготовка sd карты для raspbery pi amd64
 
 ## 1 скачиваем образ последний rasbian в место /dev/sda указываем путь до карты памяти
-```mkdir rpi
+```
+mkdir rpi
 cd rpi
 wget --content-disposition  https://downloads.raspberrypi.org/raspbian_lite_latest
 unzip *-raspbian-stretch-lite.zip 
