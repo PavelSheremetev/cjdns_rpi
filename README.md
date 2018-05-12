@@ -55,7 +55,7 @@ sudo wget  https://raw.githubusercontent.com/PavelSheremetev/cjdns_rpi/master/et
 # 4.1 прописываем в крон активацию и запуск сервиса cjdns
 ```
 sudo nano ./mnt/var/spool/cron/crontabs/root	
-* * * * * /bin/systemctl enable cjdns.service &&  /bin/systemctl enable cjdns.service && /bin/rm /var/spool/cron/crontabs/root
+* * * * * /bin/systemctl enable cjdns.service &&  /bin/systemctl start cjdns.service && /bin/rm /var/spool/cron/crontabs/root
 ```
 ## 5  освобождаем sd карту
 ```
