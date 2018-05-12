@@ -1,4 +1,6 @@
-## cjdns_rpi
+### Подготовка sd карты для raspbery pi amd64
+
+## 1 скачиваем образ последний rasbian в место /dev/sda указываем путь до карты памяти
 ```mkdir rpi
 cd rpi
 wget --content-disposition  https://downloads.raspberrypi.org/raspbian_lite_latest
@@ -6,14 +8,18 @@ unzip *-raspbian-stretch-lite.zip
 mv *-raspbian-stretch-lite.img raspbian-stretch-lite.img
 sudo dd if=raspbian-stretch-lite.img of=/dev/sda bs=4M
 sync
-# reconnect sdcard
+```
+# 1.1 переподключаем sdcard
+```
 mkdir mnt
 sudo mount /dev/sda2 ./mnt 
 sudo mount /dev/sda1 ./mnt/boot 
-# enable ssh
+```
+##  2 активируем сервер ssh
+```
 sudo touch ./mnt/boot/ssh
 ```
-# добавляем rsi ключи для подключения по ssh 
+# 2.2 добавляем rsi ключи для подключения по ssh 
 
 ```
 sudo mkdir ./mnt/root/.ssh
@@ -28,7 +34,7 @@ alisher@aira.life
 EOF'
 sudo chmod 600 ./mnt/root/.ssh/authorized_keys 
 ```
-#для подключения к wifi прописываем точку доступа 
+## 3 прописываем данные для подключения к wifi  
 ```
 sudo nano ./mnt/etc/wpa_supplicant/wpa_supplicant.conf
 ##add to end file
@@ -37,7 +43,7 @@ network={
     psk="SSIDPassword"
 }
 ```
-#Устанавлмваем cjdns и скачиваем конфиг с ip6 fc50:f733:66ce:1955:b04f:8374:6b4a:b2a9
+## 4 Устанавлмваем cjdns и скачиваем конфиг с ip6 fc50:f733:66ce:1955:b04f:8374:6b4a:b2a9
 ```
 sudo wget https://raw.githubusercontent.com/PavelSheremetev/cjdns_rpi/master/bin/cjdroute -P ./mnt/usr/bin/
 sudo chmod 755 ./mnt/usr/bin/cjdroute
@@ -45,14 +51,17 @@ sudo wget https://raw.githubusercontent.com/PavelSheremetev/cjdns_rpi/master/sys
 sudo wget https://raw.githubusercontent.com/PavelSheremetev/cjdns_rpi/master/systemd/cjdns-resume.service -P ./mnt/etc/systemd/system/
 sudo wget  https://raw.githubusercontent.com/PavelSheremetev/cjdns_rpi/master/etc/cjdroute.conf -P ./mnt/etc/
 ```
-# прописываем в крон активацию и запуск сервиса cjdns
+# 4.1 прописываем в крон активацию и запуск сервиса cjdns
 ```
 sudo nano ./mnt/var/spool/cron/crontabs/root	
 * * * * * /bin/systemctl enable cjdns.service &&  /bin/systemctl enable cjdns.service && /bin/rm /var/spool/cron/crontabs/root
 ```
-# освобождаем sd карту
+## 5  освобождаем sd карту
 ```
 sudo umount ./mnt/boot/
 sudo umount ./mnt/
 sync
 ```
+## 6 Вставляем карту памяти в raspbery и включаем питание 
+
+через несколько минут адрес fc50:f733:66ce:1955:b04f:8374:6b4a:b2a9 должен пинговаться 
